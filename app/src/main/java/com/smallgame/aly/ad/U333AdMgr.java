@@ -1,23 +1,26 @@
-package com.mob4399.demo;
+package com.smallgame.aly.ad;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.mob4399.adunion.AdUnionVideo;
 import com.mob4399.adunion.listener.OnAuVideoAdListener;
+import com.smallgame.aly.ActivityUtils;
 
-public class VideoDemoActivity extends Activity {
-    private static final String TAG = "VideoDemoActivity";
-    private static final String VIDEO_POS_ID = "3379";
-    AdUnionVideo videoAd;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_demo);
+import java.util.HashMap;
 
-        videoAd = new AdUnionVideo(this, VIDEO_POS_ID, new OnAuVideoAdListener() {
+public class U333AdMgr {
+    private static final String TAG = "U333AdMgr";
+    static HashMap<String, String> map = new HashMap();
+    static HashMap<String, String> mapError = new HashMap();
+    public static Type videoType;
+    private static AdUnionVideo unionVideo;
+    public enum Type {
+        Intertitial,
+        Incentivized
+    }
+
+    public static void init() {
+        unionVideo = new AdUnionVideo(ActivityUtils.getMainActivity(), AdMgr.unityGameID, new OnAuVideoAdListener() {
             @Override
             public void onVideoAdLoaded() {
                 Log.e(TAG, "VideoAd loaded");
@@ -50,10 +53,15 @@ public class VideoDemoActivity extends Activity {
         });
     }
 
-    public void onVideoAdShow(View view) {
-        if (videoAd != null) {
-            videoAd.show();
-        }
 
+    public static boolean canShowAds(String str) {
+        return true;
+    }
+
+    public static void showAds(String str, Type type) {
+        AdMgr.unityAd = true;
+        if(unionVideo != null) {
+            unionVideo.show();
+        }
     }
 }

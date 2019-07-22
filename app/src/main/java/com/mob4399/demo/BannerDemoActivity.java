@@ -1,7 +1,7 @@
 package com.mob4399.demo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import com.mob4399.adunion.AdUnionBanner;
 import com.mob4399.adunion.listener.OnAuBannerAdListener;
 
-public class BannerDemoActivity extends AppCompatActivity {
+public class BannerDemoActivity extends Activity {
     public static final String TAG = "BannerDemoActivity";
     public static final String BANNER_POS_ID = "1";
     private RelativeLayout mBannerContainerLayout;

@@ -1,7 +1,7 @@
 package com.mob4399.demo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,7 +10,7 @@ import com.mob4399.adunion.AdUnionNative;
 import com.mob4399.adunion.listener.AuNativeAdListener;
 import com.mob4399.adunion.model.NativeAdSize;
 
-public class NativeAdDemoActivity extends AppCompatActivity {
+public class NativeAdDemoActivity extends Activity {
     private static final String TAG = "NativeAdDemoActivity";
     private static final String NATIVE_POS_ID = "3378";
 

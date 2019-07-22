@@ -4,9 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -51,7 +50,9 @@ public class SplashActivity extends Activity implements OnAuSplashAdListener {
                 && hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             initSDK();
         } else {
-            ActivityCompat.requestPermissions(this, PERMISSIONS, REQ_PERMISSION_CODE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(PERMISSIONS, REQ_PERMISSION_CODE);
+            }
         }
 
     }
@@ -62,12 +63,14 @@ public class SplashActivity extends Activity implements OnAuSplashAdListener {
      * @return
      */
     private boolean hasPermission(String permissionName) {
-        return ActivityCompat.checkSelfPermission(this, permissionName)
-                == PackageManager.PERMISSION_GRANTED;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return checkSelfPermission(permissionName) ==PackageManager.PERMISSION_GRANTED ;
+        }
+        return true;
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,  int[] grantResults) {
 
         if (requestCode == REQ_PERMISSION_CODE) {
             checkAndRequestPermissions();
@@ -83,8 +86,6 @@ public class SplashActivity extends Activity implements OnAuSplashAdListener {
     private void initSDK(){
 
         String appId = "1"; //应用ID
-
-        //AdUnionSDK.init(this,appId, onAuInitListener);
 
         AdUnionParams params = new AdUnionParams.Builder(appId)
                 .setDebug(true).build();

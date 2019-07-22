@@ -1,14 +1,14 @@
 package com.mob4399.demo;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
 import com.mob4399.adunion.AdUnionInterstitial;
 import com.mob4399.adunion.listener.OnAuInterstitialAdListener;
 
-public class InterstitialDemoActivity extends AppCompatActivity {
+public class InterstitialDemoActivity extends Activity {
     private static final String TAG = "InterstitialActivity";
     private static final String POS_ID_1 = "3";
     private static final String POS_ID_2 = "359";
